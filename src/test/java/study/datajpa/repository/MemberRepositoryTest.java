@@ -48,10 +48,7 @@ public class MemberRepositoryTest {
         assertEquals(all.size(), 2);
 
         long count = memberRepository.count();
-
-
-
-        /';;.       assertEquals(count, 2);
+        assertEquals(count, 2);
 
         memberRepository.delete(member1);
         memberRepository.delete(member2);
@@ -67,7 +64,7 @@ public class MemberRepositoryTest {
         memberRepository.save(m1);
         memberRepository.save(m2);
 
-        Listl<Member> result = memberRepository.findByUsernameAndAgeGreaterThan("AAA", 15);
+        List<Member> result = memberRepository.findByUsernameAndAgeGreaterThan("AAA", 15);
 
         assertEquals(result.get(0).getUsername(), "AAA");
         assertEquals(result.get(0).getAge(), 20);
@@ -77,8 +74,17 @@ public class MemberRepositoryTest {
     @Test
     public void findHelloBy() {
         List<Member> helloBy = memberRepository.findTop3HelloBy();
+    }
 
+    @Test
+    public void testNamedQuery() {
+        Member member1 = new Member("AAA", 10);
+        Member member2 = new Member("BBB", 20);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
 
-/
+        List<Member> result = memberRepository.findByUsername("AAA");
+        Member findMember = result.get(0);
+        assertEquals(findMember, member1);
     }
 }
