@@ -24,7 +24,7 @@ public class MemberController {
         return member.getUsername();
     }
 
-    @GetMapping("/members/{id}")
+    @GetMapping("/members2/{id}")
     public String findMember2(@PathVariable("id") Member member) {
         return member.getUsername();
     }
@@ -41,4 +41,6 @@ public class MemberController {
             memberRepository.save(new Member("member" + i, i));
         }
     }
+
+
 }
